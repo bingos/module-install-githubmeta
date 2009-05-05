@@ -10,10 +10,16 @@ $VERSION = '0.02';
 sub githubmeta {
   my $self = shift;
   return unless $Module::Install::AUTHOR;
-  require Capture::Tiny;
   return unless -e '.git';
   return unless $self->can_run('git');
-  warn "Meep\n";
+  return unless my ($git_url) = `git remote show origin` =~ /URL: (.*)$/m;
+  return unless $git_url =~ /github\.com/; # Not a Github repository
+  my $http_url = $git_url;
+  $git_url =~ s![\w\-]+\@([^:]+):!git://$1/!;
+  $http_url =~ s![\w\-]+\@([^:]+):!http://$1/!;
+  $http_url =~ s!\.git$!/tree!;
+  $self->repository( $git_url );
+  $self->homepage( $http_url ) unless $self->homepage();
   return 1;
 }
 
