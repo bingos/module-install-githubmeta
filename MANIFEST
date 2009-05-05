@@ -1,5 +1,4 @@
 Changes
-have_make
 inc/Module/Install.pm
 inc/Module/Install/AutoLicense.pm
 inc/Module/Install/Base.pm
