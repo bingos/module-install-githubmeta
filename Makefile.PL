@@ -5,6 +5,7 @@ name 'Module-Install-GithubMeta';
 author 'Chris Williams <chris@bingosnet.co.uk>';
 version_from 'lib/Module/Install/GithubMeta.pm';
 abstract_from 'lib/Module/Install/GithubMeta.pm';
+readme_from 'lib/Module/Install/GithubMeta.pm';
 license 'perl';
 auto_license holder => 'Chris Williams and Tatsuhiko Miyagawa';
 perl_version '5.006';

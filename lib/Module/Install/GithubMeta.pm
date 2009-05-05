@@ -30,4 +30,59 @@ __END__
 
 Module::Install::GithubMeta - A Module::Install extension to include GitHub meta information in META.yml
 
+=head1 SYNOPSIS
+
+  # In Makefile.PL
+
+  use inc::Module::Install;
+  githubmeta;
+
+The C<repository> and C<homepage> meta in C<META.yml> will be set accordingly.
+
+=head1 DESCRIPTION
+
+Module::Install::GithubMeta is a L<Module::Install> extension to include GitHub L<http://github.com> meta
+information in C<META.yml>.
+
+It automatically detects if the distribution directory is under C<git> version control and whether the 
+C<origin> is a GitHub repository and will set the C<repository> and C<homepage> meta in C<META.yml> to the
+appropriate URLs for GitHub.
+
+=head1 COMMANDS
+
+This plugin adds the following Module::Install command:
+
+=over
+
+=item C<githubmeta>
+
+Does nothing on the user-side. On the author-side it will auto-detect if the directory is under C<git> version control
+and whether the C<origin> is a GitHub repository. Will set C<repository> to the public clone URL and C<homepage> to the
+http GitHub link for the repository.
+
+You may override the C<homepage> setting by using the L<Module::Install> C<homepage> command prior to calling this
+command.
+
+  use inc::Module::Install;
+  homepage 'http://mymoduleshomepage.com/';
+  githubmeta;
+
+=back
+
+=head1 AUTHOR
+
+Chris C<BinGOs> Williams
+
+Based on code from L<Module::Install::Repository> by Tatsuhiko Miyagawa
+
+=head1 LICENSE
+
+Copyright E<copy> Chris Williams and Tatsuhiko Miyagawa
+
+This module may be used, modified, and distributed under the same terms as Perl itself. Please see the license that came with your Perl distribution for details.
+
+=head1 SEE ALSO
+
+L<Module::Install>
+
 =cut
