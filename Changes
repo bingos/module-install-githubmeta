@@ -1,5 +1,9 @@
 Changelog for Module-Install-GithubMeta
 =======================================
 
+0.04	Thu May 14 13:08:13 BST 2009
+	- Don't blindly assume that there is a .git in the cwd
+	  recurse up the file system looking for it.
+
 0.02	Tue May  5 12:32:12 BST 2009
 	- Initial CPAN Release

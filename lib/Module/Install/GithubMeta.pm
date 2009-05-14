@@ -2,15 +2,16 @@ package Module::Install::GithubMeta;
 
 use strict;
 use warnings;
+use Cwd;
 use base qw(Module::Install::Base);
 use vars qw($VERSION);
 
-$VERSION = '0.02';
+$VERSION = '0.04';
 
 sub githubmeta {
   my $self = shift;
   return unless $Module::Install::AUTHOR;
-  return unless -e '.git';
+  return unless _under_git();
   return unless $self->can_run('git');
   return unless my ($git_url) = `git remote show origin` =~ /URL: (.*)$/m;
   return unless $git_url =~ /github\.com/; # Not a Github repository
@@ -21,6 +22,20 @@ sub githubmeta {
   $self->repository( $git_url );
   $self->homepage( $http_url ) unless $self->homepage();
   return 1;
+}
+
+sub _under_git {
+  my $cwd = getcwd;
+  my $last = $cwd;
+  while (1) {
+    chdir '..' or return;
+    my $current = getcwd;
+    return if $last eq $current;
+    $last = $current;
+    return 1 if -e '.git';
+
+  }
+  return;
 }
 
 'Github';
