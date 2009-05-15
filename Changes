@@ -1,6 +1,9 @@
 Changelog for Module-Install-GithubMeta
 =======================================
 
+0.08	Fri May 15 09:17:10 BST 2009
+	- Screwed up again. Actually check the cwd before searching up the tree.
+
 0.06	Thu May 14 13:53:18 BST 2009
 	- I screwed up, we do need to change back to the distribution directory
 	  after our search up the directory tree.

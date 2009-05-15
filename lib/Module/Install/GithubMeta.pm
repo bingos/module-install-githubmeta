@@ -6,7 +6,7 @@ use Cwd;
 use base qw(Module::Install::Base);
 use vars qw($VERSION);
 
-$VERSION = '0.06';
+$VERSION = '0.08';
 
 sub githubmeta {
   my $self = shift;
@@ -25,6 +25,7 @@ sub githubmeta {
 }
 
 sub _under_git {
+  return 1 if -e '.git';
   my $cwd = getcwd;
   my $last = $cwd;
   my $found = 0;
