@@ -6,14 +6,14 @@ use Cwd;
 use base qw(Module::Install::Base);
 use vars qw($VERSION);
 
-$VERSION = '0.08';
+$VERSION = '0.10';
 
 sub githubmeta {
   my $self = shift;
   return unless $Module::Install::AUTHOR;
   return unless _under_git();
   return unless $self->can_run('git');
-  return unless my ($git_url) = `git remote show origin` =~ /URL: (.*)$/m;
+  return unless my ($git_url) = `git remote show -n origin` =~ /URL: (.*)$/m;
   return unless $git_url =~ /github\.com/; # Not a Github repository
   my $http_url = $git_url;
   $git_url =~ s![\w\-]+\@([^:]+):!git://$1/!;
