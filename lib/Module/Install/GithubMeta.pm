@@ -6,7 +6,7 @@ use Cwd;
 use base qw(Module::Install::Base);
 use vars qw($VERSION);
 
-$VERSION = '0.10';
+$VERSION = '0.12';
 
 sub githubmeta {
   my $self = shift;
