@@ -6,14 +6,15 @@ use Cwd;
 use base qw(Module::Install::Base);
 use vars qw($VERSION);
 
-$VERSION = '0.14';
+$VERSION = '0.16';
 
 sub githubmeta {
   my $self = shift;
   return unless $Module::Install::AUTHOR;
   return unless _under_git();
   return unless $self->can_run('git');
-  return unless my ($git_url) = `git remote show -n origin` =~ /URL: (.*)$/m;
+  my $remote = shift || 'origin';
+  return unless my ($git_url) = `git remote show -n $remote` =~ /URL: (.*)$/m;
   return unless $git_url =~ /github\.com/; # Not a Github repository
   my $http_url = $git_url;
   $git_url =~ s![\w\-]+\@([^:]+):!git://$1/!;
@@ -70,7 +71,7 @@ The C<repository> and C<homepage> meta in C<META.yml> will be set accordingly.
 Module::Install::GithubMeta is a L<Module::Install> extension to include GitHub L<http://github.com> meta
 information in C<META.yml>.
 
-It automatically detects if the distribution directory is under C<git> version control and whether the 
+It automatically detects if the distribution directory is under C<git> version control and whether the
 C<origin> is a GitHub repository and will set the C<repository> and C<homepage> meta in C<META.yml> to the
 appropriate URLs for GitHub.
 
@@ -85,6 +86,8 @@ This plugin adds the following Module::Install command:
 Does nothing on the user-side. On the author-side it will auto-detect if the directory is under C<git> version control
 and whether the C<origin> is a GitHub repository. Will set C<repository> to the public clone URL and C<homepage> to the
 http GitHub link for the repository.
+
+You may optionally provide the remote to query, this defaults to C<origin> if not specified.
 
 You may override the C<homepage> setting by using the L<Module::Install> C<homepage> command prior to calling this
 command.

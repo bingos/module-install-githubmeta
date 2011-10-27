@@ -30,6 +30,9 @@ COMMANDS
         to the public clone URL and "homepage" to the http GitHub link for
         the repository.
 
+        You may optionally provide the remote to query, this defaults to
+        "origin" if not specified.
+
         You may override the "homepage" setting by using the Module::Install
         "homepage" command prior to calling this command.
 
