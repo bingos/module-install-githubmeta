@@ -21,7 +21,7 @@ sub githubmeta {
   my $http_url = $git_url;
   $git_url =~ s![\w\-]+\@([^:]+):!git://$1/!;
   $http_url =~ s![\w\-]+\@([^:]+):!https://$1/!;
-  $http_url =~ s!\.git$!/tree!;
+  $http_url =~ s!\.git$!/!;
   $self->repository( $git_url );
   $self->homepage( $http_url ) unless $self->homepage();
   return 1;
